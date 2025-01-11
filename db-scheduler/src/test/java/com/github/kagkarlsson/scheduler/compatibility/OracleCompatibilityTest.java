@@ -13,19 +13,19 @@ import javax.sql.DataSource;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
-import org.testcontainers.containers.OracleContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.oracle.OracleContainer;
 
 @Tag("compatibility")
 @Testcontainers
-public class Oracle11gCompatibilityTest extends CompatibilityTest {
-  @Container private static final OracleContainer ORACLE = new OracleContainer("gvenzl/oracle-xe");
+public class OracleCompatibilityTest extends CompatibilityTest {
+  @Container private static final OracleContainer ORACLE = new OracleContainer("gvenzl/oracle-free");
 
   private static HikariDataSource pooledDatasource;
 
-  public Oracle11gCompatibilityTest() {
-    super(false, true); // FIXLATER: fix syntax and enable
+  public OracleCompatibilityTest() {
+    super(true, true);
   }
 
   @BeforeAll

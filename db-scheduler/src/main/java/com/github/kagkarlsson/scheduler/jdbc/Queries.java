@@ -40,4 +40,8 @@ public class Queries {
   public static String ansiSqlLimitPart(int limit) {
     return " OFFSET 0 ROWS FETCH FIRST " + limit + " ROWS ONLY ";
   }
+
+//  public static String oracleSqlLimitPart(int limit) {
+//    return " FETCH FIRST " + limit + " ROWS ONLY ";
+//  }
 }
