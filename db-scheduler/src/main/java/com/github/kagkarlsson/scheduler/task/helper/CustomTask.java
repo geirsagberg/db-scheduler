@@ -27,7 +27,7 @@ import java.util.function.Function;
 
 public abstract class CustomTask<T> extends AbstractTask<T> implements OnStartup {
   private final NextExecutionTime defaultExecutionTime;
-  private ScheduleOnStartup<T> scheduleOnStartup;
+  private final ScheduleOnStartup<T> scheduleOnStartup;
 
   public CustomTask(
       String name,
@@ -36,7 +36,25 @@ public abstract class CustomTask<T> extends AbstractTask<T> implements OnStartup
       Function<Instant, Instant> defaultExecutionTime,
       FailureHandler<T> failureHandler,
       DeadExecutionHandler<T> deadExecutionHandler) {
-    super(name, dataClass, failureHandler, deadExecutionHandler);
+    this(
+        name,
+        dataClass,
+        scheduleOnStartup,
+        defaultExecutionTime,
+        failureHandler,
+        deadExecutionHandler,
+        DEFAULT_PRIORITY);
+  }
+
+  public CustomTask(
+      String name,
+      Class<T> dataClass,
+      ScheduleOnStartup<T> scheduleOnStartup,
+      Function<Instant, Instant> defaultExecutionTime,
+      FailureHandler<T> failureHandler,
+      DeadExecutionHandler<T> deadExecutionHandler,
+      int defaultPriority) {
+    super(name, dataClass, failureHandler, deadExecutionHandler, defaultPriority);
     this.scheduleOnStartup = scheduleOnStartup;
     this.defaultExecutionTime = NextExecutionTime.from(defaultExecutionTime);
   }

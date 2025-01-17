@@ -38,7 +38,16 @@ public abstract class OneTimeTask<T> extends AbstractTask<T> {
       Class<T> dataClass,
       FailureHandler<T> failureHandler,
       DeadExecutionHandler<T> deadExecutionHandler) {
-    super(name, dataClass, failureHandler, deadExecutionHandler);
+    this(name, dataClass, failureHandler, deadExecutionHandler, DEFAULT_PRIORITY);
+  }
+
+  public OneTimeTask(
+      String name,
+      Class<T> dataClass,
+      FailureHandler<T> failureHandler,
+      DeadExecutionHandler<T> deadExecutionHandler,
+      int defaultPriority) {
+    super(name, dataClass, failureHandler, deadExecutionHandler, defaultPriority);
   }
 
   @Override
